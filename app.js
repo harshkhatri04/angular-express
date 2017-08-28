@@ -32,6 +32,7 @@ app.use(cors());
 
 //body - parser
 app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended:false}))
 
 //static files
 app.use(express.static(path.join(__dirname,'public')));
@@ -45,7 +46,7 @@ app.get('/',(req,res)=>{
 })
 
 app.listen(port,()=> {
-  console.log('app listening on port 3000!')
+  console.log('app listening on port 8090!')
 })
 
 app.get('/', function (req, res) {

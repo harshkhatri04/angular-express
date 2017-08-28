@@ -4,41 +4,56 @@ const router = express.Router();
 const Contact = require('../models/contacts');
 
 //retriving data
-router.get('/contacts', (req, res, next) => {
+router.get('/contact', (req, res) => {
     Contact.find(function(err, contacts) {
         res.json(contacts);
     })
 });
 
 //add contact
-router.post('/contact', (req, res, next) => {
-let newContact = new Contact({
-    first_name:req.body.first_name,
-    last_name:req.body.last_name,
-    phone:req.body.phone
-});
+router.post('/contact', (req, res) => {
+
+var newContact = new Contact();
+    newContact.firstname=req.body.firstname;
+    newContact.lastname=req.body.lastname;
+    newContact.phone=req.body.phone;
 
     newContact.save((err, contact) => {
         if (err) {
-            res.json({ msg: 'fail to add' });
+            
+            res.send('fail to add');
         } else {
-      
             res.json(contact);
-        }
-    
+        }    
    });
 });
 
 //delete contact
 router.delete('/contact/:id', (req, res, next) => {
-    Contact.remove({ _id: req.params.id }, function(err, result) {
+    Contact.remove({ _id: req.params.id }, function(err, contacts) {
         if (err) {
             res.json(err);
         } else {
-            res.json(result);
+            res.json(contacts);
         }
     });
 });
+
+router.put('/contact/:id',(req, res) =>{
+    Contact.update({_id: req.params.id},
+        {$set:
+        {firstname:req.body.firstname,
+        lastname:req.body.lastname,
+        phone:req.body.phone}},
+        {upsert:true},
+         function(err,newcontacts){
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(newcontacts);
+        }
+    })
+})
 
 module.exports = router;
 

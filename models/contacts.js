@@ -1,20 +1,11 @@
-const mongoose = require('mongoose');
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
 
-const ContactSchema = mongoose.Schema({
-
-	  first_name:{
-	  	type: String,
-	  	require:true
-	  },
-	  last_name:{
-	  	type:String,
-	  	require:true
-	  },
-	  phone:{
-	  	type:String,
-	  	require:true
-	  }
+let ContactSchema = mongoose.Schema({
+	firstname : String,
+	lastname : String,
+	phone : Number
 });
 
-const Contact = module.exports = mongoose.model('Contact',ContactSchema);
+let Contact = module.exports = mongoose.model('myContact',ContactSchema);
