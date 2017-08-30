@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-     "test": ""
+    "test": "nyc mocha"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,7 @@
   "devDependencies": {
     "chai": "^4.1.1",
     "mocha": "^3.5.0",
+    "nyc": "^11.1.0",
     "supertest": "^3.0.0"
   }
 }

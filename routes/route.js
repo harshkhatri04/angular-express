@@ -30,7 +30,7 @@ var newContact = new Contact();
 
 //delete contact
 router.delete('/contact/:id', (req, res, next) => {
-    Contact.remove({ _id: req.params.id }, function(err, contacts) {
+    Contact.remove({_id: req.params.id }, function(err, contacts) {
         if (err) {
             res.json(err);
         } else {
