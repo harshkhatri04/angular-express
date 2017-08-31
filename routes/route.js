@@ -19,10 +19,10 @@ var newContact = new Contact();
     newContact.phone=req.body.phone;
 
     newContact.save((err, contact) => {
-        if (err) {
+        /*if (err) {
             
             res.send('fail to add');
-        } else {
+        } else*/ {
             res.json(contact);
         }    
    });
@@ -31,9 +31,9 @@ var newContact = new Contact();
 //delete contact
 router.delete('/contact/:id', (req, res, next) => {
     Contact.remove({_id: req.params.id }, function(err, contacts) {
-        if (err) {
+       /* if (err) {
             res.json(err);
-        } else {
+        } else*/ {
             res.json(contacts);
         }
     });
@@ -47,9 +47,9 @@ router.put('/contact/:id',(req, res) =>{
         phone:req.body.phone}},
         {upsert:true},
          function(err,newcontacts){
-        if (err) {
+        /*if (err) {
             res.json(err);
-        } else {
+        } else*/ {
             res.json(newcontacts);
         }
     })

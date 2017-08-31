@@ -9,15 +9,10 @@ let modelStubUpdate=sinon.stub(scheema,'update')
 let should = require('chai').should();
 //stubbing find method of route
 
-
 var app = require('../app.js');
 var address = request("http://localhost:8090")
 
-
-
-    describe('get/ contacts', function() {
-
-        
+    describe('get/ contacts', function() {        
             before(function(){
             modelStub.yields(null, [{'firstname':'jhonny','lastname':'bravo','phone':8765717781}]);
             });
@@ -32,8 +27,7 @@ var address = request("http://localhost:8090")
                         expect(res.body[0].firstname).to.be.equal("jhonny");
                         expect(res.body[0].lastname).to.be.equal("bravo");
                         expect(res.body[0].phone).to.be.equal(8765717781);
-                        done();
-                    
+                        done();                    
             });
         });
     });
@@ -42,8 +36,7 @@ var address = request("http://localhost:8090")
           modelStubSave.yields(null, [{'firstname':'jhonny','lastname':'bravo','phone':8765717781}]);
           });
             it('checking post',function(done) {
-                 address
-                
+                 address                
                     .post('/api/contact')
                     //.send({firstname:'jhonny',lastname:'bravo',phone:8765717781})
                     .expect(200)
@@ -81,8 +74,7 @@ var address = request("http://localhost:8090")
               }
             });
         });
-    });
-     
+    });     
      describe('update/ contacts', function() {                    
                   
                   before(function(){
