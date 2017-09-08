@@ -1,40 +1,41 @@
 const express = require('express');
 const router = express.Router();
 
-const Contact = require('../models/contacts');
+const Weather = require('../models/contacts');
 
 //retriving data
 router.get('/contact', (req, res) => {
-    Contact.find(function(err, contacts) {
-        res.json(contacts);
+    Weather.find(function(err, weather) {
+        res.json(weather);
     })
 });
 
 //add contact
 router.post('/contact', (req, res) => {
 
-var newContact = new Contact();
-    newContact.firstname=req.body.firstname;
-    newContact.lastname=req.body.lastname;
-    newContact.phone=req.body.phone;
+var weatherData = new Weather();
+    weatherData.name=req.body.name;
+    weatherData.date=req.body.date;
+    weatherData.maxtemp=req.body.maxtemp;
+    weatherData.mintemp=req.body.mintemp;
 
-    newContact.save((err, contact) => {
+    weatherData.save((err, weather) => {
         /*if (err) {
             
             res.send('fail to add');
         } else*/ {
-            res.json(contact);
+            res.json(weather);
         }    
    });
 });
 
 //delete contact
 router.delete('/contact/:id', (req, res, next) => {
-    Contact.remove({_id: req.params.id }, function(err, contacts) {
+    Weather.remove({_id: req.params.id }, function(err, weather) {
        /* if (err) {
             res.json(err);
         } else*/ {
-            res.json(contacts);
+            res.json(weather);
         }
     });
 });

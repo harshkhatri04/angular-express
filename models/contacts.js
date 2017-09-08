@@ -2,10 +2,14 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 
-let ContactSchema = mongoose.Schema({
-	firstname : String,
-	lastname : String,
-	phone : Number
+let weatherSchema =  new Schema({
+
+	name : String,
+	date : String,
+	maxtemp : String,
+	mintemp : String
 });
 
-let Contact = module.exports = mongoose.model('myContact',ContactSchema);
+let Weather = module.exports = mongoose.model('Weather',weatherSchema);
+
+//module.exports = weather;
